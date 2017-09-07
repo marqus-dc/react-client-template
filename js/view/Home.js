@@ -1,48 +1,41 @@
-'use strict';
-
-import React from "react";
-import PropTypes from "prop-types";
-import Table from "../component/Table";
-import {connect} from "react-redux";
-import {readAllStudents} from "../store/StudentAction";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Table from '../component/Table';
+import { readAllStudents } from '../store/StudentAction';
 
 class Home extends React.Component {
-
   static propTypes = {
     students: PropTypes.array.isRequired,
     readAllStudents: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    console.log('componentDidMount');
     this.props.readAllStudents();
   }
 
   render() {
-    const {students} = this.props;
+    const { students } = this.props;
     return (
-        <Table header={["Ime"]} content={students}/>
-    )
+      <Table header={['Ime']} content={students} />
+    );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    students: state.studentReducer.students
-  }
-};
+const mapStateToProps = state => ({
+  students: state.studentReducer.students,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    readAllStudents: () => {
-      dispatch(readAllStudents())
-    },
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  readAllStudents: () => {
+    dispatch(readAllStudents());
+  },
+});
 
 Home = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Home);
 
 module.exports = Home;
