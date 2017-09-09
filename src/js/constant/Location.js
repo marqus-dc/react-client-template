@@ -1,4 +1,4 @@
-export default Location = {
+const Location = {
   DEFAULT: "*",
   ROOT: "/",
   LOGIN: "/login",
@@ -6,3 +6,5 @@ export default Location = {
     return "/#" + location;
   },
 }
+
+export default Location;

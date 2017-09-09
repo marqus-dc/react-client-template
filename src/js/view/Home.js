@@ -1,12 +1,10 @@
-'use strict';
-
 import React from "react";
 import PropTypes from "prop-types";
 import Table from "../component/Table";
 import {connect} from "react-redux";
 import {readAllStudents} from "../store/StudentAction";
 
-class Home extends React.Component {
+export default class Home extends React.Component {
 
   static propTypes = {
     students: PropTypes.array.isRequired,
@@ -44,5 +42,3 @@ Home = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Home);
-
-module.exports = Home;

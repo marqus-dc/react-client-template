@@ -1,8 +1,6 @@
-'use strict';
-
 import React from "react";
 
-class Login extends React.Component {
+export default class Login extends React.Component {
 
   render() {
     return (
@@ -22,7 +20,7 @@ class Login extends React.Component {
               </label>
             </div>
             <button className="btn btn-lg btn-primary btn-block"
-                    onClick={}>
+                    onClick={() => {}}>
               Sign in
             </button>
           </form>
@@ -30,5 +28,3 @@ class Login extends React.Component {
     )
   }
 }
-
-module.exports = Login;
