@@ -4,7 +4,7 @@ import Home from "./Home";
 import {Route, Switch} from "react-router-dom";
 import Header from "./Header";
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
         <div>
@@ -37,5 +37,3 @@ App = connect(
     mapStateToProps,
     mapDispatchToProps
 )(App);
-
-module.exports = App;

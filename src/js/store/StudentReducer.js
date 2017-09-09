@@ -1,4 +1,4 @@
-import {StoreAction} from "../constant/StoreAction";
+import StoreAction from "../constant/StoreAction";
 
 const initialState = {
   students: []

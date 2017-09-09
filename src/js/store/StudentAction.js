@@ -1,5 +1,5 @@
 import RestService from "../service/RestService";
-import {StoreAction} from "../constant/StoreAction";
+import StoreAction from "../constant/StoreAction";
 
 /**
  * Read project from database. If projectId parameter is not supplied,

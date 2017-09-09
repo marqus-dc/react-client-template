@@ -1,7 +1,4 @@
-'use strict';
-
 import React from "react";
-import PropTypes from "prop-types";
 import Location from "../constant/Location";
 
 export default class Header extends React.Component {

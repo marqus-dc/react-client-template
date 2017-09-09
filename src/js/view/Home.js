@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Table from '../component/Table';
 import { readAllStudents } from '../store/StudentAction';
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   static propTypes = {
     students: PropTypes.array.isRequired,
     readAllStudents: PropTypes.func.isRequired,
