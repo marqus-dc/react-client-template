@@ -24,8 +24,8 @@ window.store = store;
 
 const rootRoute = (
     <Switch>
-      <Route path={Location.LOGIN} component={() => <Login/>}/>
-      <Route path={Location.ROOT} component={() => <App/>}/>
+      <Route path={Location.LOGIN} component={Login}/>
+      <Route path={Location.ROOT} component={App}/>
       <Route path={Location.DEFAULT} component={Home}/>
     </Switch>
 );
@@ -33,7 +33,7 @@ const rootRoute = (
 const render = () => {
   ReactDOM.render(
       <Provider store={store}>
-        <HashRouter>
+        <HashRouter onUpdate={console.log("Changing route")}>
           {rootRoute}
         </HashRouter>
       </Provider>,

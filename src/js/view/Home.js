@@ -4,14 +4,9 @@ import { connect } from 'react-redux';
 import Table from '../component/Table';
 import { readAllStudents } from '../store/StudentAction';
 
-export default class Home extends React.Component {
-  static propTypes = {
-    students: PropTypes.array.isRequired,
-    readAllStudents: PropTypes.func.isRequired,
-  }
+class Home extends React.Component {
 
   componentDidMount() {
-    console.log('componentDidMount');
     this.props.readAllStudents();
   }
 
@@ -21,6 +16,11 @@ export default class Home extends React.Component {
       <Table header={['Ime']} content={students} />
     );
   }
+}
+
+Home.propTypes = {
+  students: PropTypes.array.isRequired,
+  readAllStudents: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -37,3 +37,5 @@ Home = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Home);
+
+export default Home;

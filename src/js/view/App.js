@@ -4,15 +4,14 @@ import Home from "./Home";
 import {Route, Switch} from "react-router-dom";
 import Header from "./Header";
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
         <div>
           <Header/>
           <div className="container">
             <Switch>
-              <Route exact={true} path={Location.ROOT}
-                     component={() => <Home/>}/>
+              <Route exact={true} path={Location.ROOT} component={Home}/>
             </Switch>
           </div>
         </div>
@@ -37,3 +36,5 @@ App = connect(
     mapStateToProps,
     mapDispatchToProps
 )(App);
+
+export default App;
