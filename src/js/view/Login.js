@@ -1,30 +1,37 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {login} from "../store/GlobalAction";
+import LoginForm from './LoginForm';
 
-export default class Login extends React.Component {
-
+class Login extends React.Component {
   render() {
+    const {handleLogin} = this.props;
     return (
-        <div className="container">
-          <form className="form-signin">
-            <h2 className="form-signin-heading">Please sign in</h2>
-            <label htmlFor="inputEmail" className="sr-only">
-              Email address</label>
-            <input type="email" id="inputEmail" className="form-control"
-                   placeholder="Email address" required="" autoFocus=""/>
-            <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <input type="password" id="inputPassword" className="form-control"
-                   placeholder="Password" required=""/>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me"/>Remember me
-              </label>
-            </div>
-            <button className="btn btn-lg btn-primary btn-block"
-                    onClick={() => {}}>
-              Sign in
-            </button>
-          </form>
-        </div>
-    )
+        <LoginForm onSubmit={handleLogin}/>
+    );
   }
 }
+
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired
+};
+
+const mapStateToProps = () => {
+  return {}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleLogin: () => {
+      dispatch(login());
+    },
+  }
+};
+
+Login = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Login);
+
+export default Login;

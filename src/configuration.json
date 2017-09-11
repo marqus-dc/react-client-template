@@ -1,3 +1,6 @@
 {
-  "apiUrl": "http://localhost:8080/"
+  "server": {
+    "baseUrl": "http://localhost:8080",
+    "loginPath": "/sign-in"
+  }
 }
