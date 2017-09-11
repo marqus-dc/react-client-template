@@ -1,4 +1,5 @@
 import configuration from "../../configuration";
+import Location from "../constant/Location";
 
 class LocationService {
 
@@ -13,10 +14,10 @@ class LocationService {
 
   get() {
     var hashPath = window.location.hash;
-    return hashPath.substring(2);
+    return hashPath.substring(1);
   }
 
-  isLoggingIn() {
+  isOnLoginPage() {
     var path = this.get();
     if (path.startsWith(Location.LOGIN)) {
       return true;

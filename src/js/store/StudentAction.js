@@ -8,13 +8,10 @@ import StoreAction from "../constant/StoreAction";
  * @returns {function(*, *)}
  */
 export function readAllStudents() {
-  console.log("readAllStudents Action");
   return (dispatch) => {
-    console.log("readAllStudentsStart Action");
     // dispatch({type: StoreAction.READ_ALL_STUDENTS_START});
     RestService.get("students")
     .then(response => {
-      console.log("readAllStudents received result Action");
       dispatch({
         type: StoreAction.READ_ALL_STUDENTS,
         students: response

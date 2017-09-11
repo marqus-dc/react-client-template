@@ -1,7 +1,7 @@
 const Location = {
   DEFAULT: "*",
   ROOT: "/",
-  LOGIN: "/login",
+  LOGIN: "/sign-in",
   hashLocation: location => {
     return "/#" + location;
   },

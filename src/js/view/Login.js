@@ -1,12 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {login} from "../store/GlobalAction";
 import LoginForm from './LoginForm';
 
 class Login extends React.Component {
   render() {
+    const {handleLogin} = this.props;
     return (
-      <LoginForm handleSubmit={this.submit} />
+        <LoginForm onSubmit={handleLogin}/>
     );
   }
 }
 
-module.exports = Login;
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired
+};
+
+const mapStateToProps = () => {
+  return {}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleLogin: () => {
+      dispatch(login());
+    },
+  }
+};
+
+Login = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Login);
+
+export default Login;

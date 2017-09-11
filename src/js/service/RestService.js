@@ -5,7 +5,7 @@ class RestService {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: configuration.apiUrl,
+      baseURL: configuration.server.baseUrl,
       withCredentials: true
       // timeout: 10000,
       // headers: {'X-Custom-Header': 'foobar'}
@@ -13,7 +13,7 @@ class RestService {
   }
 
   generateApiUrl(path) {
-    return configuration.apiUrl + path;
+    return configuration.server.baseUrl + path;
   }
 
   getNative(path) {
@@ -22,9 +22,7 @@ class RestService {
 
   get(path) {
     return this.axios.get(path)
-    .then(response => {
-      response = response.data;
-    })
+    .then(response => response = response.data)
     .catch(error => console.log(error))
   }
 
