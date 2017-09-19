@@ -5,6 +5,13 @@ import {login} from "../store/GlobalAction";
 import LoginForm from './LoginForm';
 
 class Login extends React.Component {
+  componentDidMount() {
+    // this.ref.getRenderedComponent().blur();
+    // this.ref.getRenderedComponent().focus();
+  }
+
+  saveRef = ref => (this.ref = ref)
+
   render() {
     const {handleLogin} = this.props;
     return (

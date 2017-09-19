@@ -1,31 +1,47 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {RaisedButton} from "material-ui";
+import {TextField} from "redux-form-material-ui";
 
-let LoginForm = (props) => {
+class LoginForm extends React.Component {
 
-  const {handleSubmit} = props;
+  componentDidMount() {
+    this.ref // the Field
+    .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
+    .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
+    .focus();
+  }
 
-  return (
-      <div className="container">
-        <div className="form-signin">
-          <h2 className="form-signin-heading">Please sign in</h2>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="inputEmail" className="sr-only">Email
-              address</label>
-            <Field className="form-control" name="username" component="input"
-                   type="text"/>
-            <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <Field className="form-control" name="password" component="input"
-                   type="password"/>
+  saveRef = ref => (this.ref = ref)
+
+  render() {
+    const {handleSubmit} = this.props;
+    return (
+        <div className="login">
+          <form ref="form">
+            <Field name="username" component={TextField}
+                   hintText="Enter your Username"
+                // floatingLabelText="Username"
+                   ref={this.saveRef}
+                   withRef
+            />
+            <br/>
+            <Field name="password" type="password" component={TextField}
+                   hintText="Enter your Password"
+                // floatingLabelText="Password"
+                   ref={this.saveRef}
+                   withRef
+            />
+            <br/>
+            <RaisedButton label="Submit" primary={true}
+                          onClick={(event) => {
+                            handleSubmit()
+                          }}/>
           </form>
-          <button className="btn btn-lg btn-primary btn-block" type="submit"
-                  onClick={handleSubmit}>
-            Sign in
-          </button>
         </div>
-      </div>
-  );
-};
+    );
+  };
+}
 
 LoginForm = reduxForm({
   form: 'login',
