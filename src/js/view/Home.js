@@ -1,41 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Table from '../component/Table';
-import { readAllStudents } from '../store/StudentAction';
+import React from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {Card, CardActions, FlatButton} from "material-ui";
+import {setCreateMarkDialogVisibility} from "../store/GlobalAction";
+import {readAllMarks, saveMark} from "../store/StudentAction";
+import Table from "../component/Table";
+import CreateMarkDialog from "./dialog/CreateMarkDialog";
 
 class Home extends React.Component {
 
   componentDidMount() {
-    this.props.readAllStudents();
+    this.props.readAllMarks();
   }
 
   render() {
-    const { students } = this.props;
+    const {marks, createMarkDialogVisible, setCreateMarkDialogVisibility, saveMark} = this.props;
     return (
-      <Table header={['Ime']} content={students} />
+        <Card>
+          <CardActions>
+            <FlatButton label="Create new mark"
+                        onClick={() => {
+                          setCreateMarkDialogVisibility(true);
+                        }}/>
+          </CardActions>
+          <Table header={['Mark']} content={marks}/>
+          <CreateMarkDialog visible={createMarkDialogVisible}
+                            setVisibility={setCreateMarkDialogVisibility}
+                            onSubmit={saveMark}/>
+        </Card>
     );
   }
 }
 
 Home.propTypes = {
-  students: PropTypes.array.isRequired,
+  marks: PropTypes.array.isRequired,
+  createMarkDialogVisible: PropTypes.bool.isRequired,
   readAllStudents: PropTypes.func.isRequired,
+  setCreateMarkDialogVisibility: PropTypes.func.isRequired,
+  saveMark: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  students: state.studentReducer.students,
+  marks: state.studentReducer.marks,
+  createMarkDialogVisible: state.globalReducer.createMarkDialogVisible
 });
 
 const mapDispatchToProps = dispatch => ({
-  readAllStudents: () => {
-    dispatch(readAllStudents());
+  readAllMarks: () => {
+    dispatch(readAllMarks());
+  },
+  setCreateMarkDialogVisibility: (visibility) => {
+    dispatch(setCreateMarkDialogVisibility(visibility));
+  },
+  saveMark: () => {
+    dispatch(saveMark());
   },
 });
 
 Home = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(Home);
 
 export default Home;

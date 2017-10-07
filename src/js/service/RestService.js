@@ -5,7 +5,7 @@ class RestService {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: configuration.server.baseUrl,
+      baseURL: configuration.server.url,
       withCredentials: true
       // timeout: 10000,
       // headers: {'X-Custom-Header': 'foobar'}

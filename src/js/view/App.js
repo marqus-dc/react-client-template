@@ -1,16 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Home from "./Home";
 import {Route, Switch} from "react-router-dom";
-import {AppBar} from "material-ui";
+import {AppBar, FlatButton} from "material-ui";
+import {logout} from "../store/GlobalAction";
 
 class App extends React.Component {
   render() {
+    const {logout} = this.props;
     return (
         <div>
-          <AppBar
-              title="Title"
-              iconClassNameRight="muidocs-icon-navigation-expand-more"
+          <AppBar title="Title"
+                  showMenuIconButton={false}
+                  iconElementRight={<FlatButton label="Logout" onClick={logout}/>}
           />
           <div className="container">
             <Switch>
@@ -22,6 +25,10 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => {
   return {
     globalStore: state.globalReducer,
@@ -31,7 +38,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatch: dispatch
+    logout: () => {
+      dispatch(logout());
+    },
   }
 };
 

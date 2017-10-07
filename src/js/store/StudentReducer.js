@@ -1,7 +1,8 @@
 import StoreAction from "../constant/StoreAction";
 
 const initialState = {
-  students: []
+  students: [],
+  marks: [],
 };
 
 export default function studentReducer(state = initialState, action) {
@@ -10,6 +11,8 @@ export default function studentReducer(state = initialState, action) {
       return Object.assign({}, state, {students: initialState.students});
     case StoreAction.READ_ALL_STUDENTS:
       return Object.assign({}, state, {students: action.students});
+    case StoreAction.READ_ALL_MARKS:
+      return Object.assign({}, state, {marks: action.marks});
     default:
       return state;
   }
